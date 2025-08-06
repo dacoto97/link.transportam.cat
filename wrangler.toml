@@ -1,0 +1,7 @@
+name = "transportam-link"
+compatibility_date = "2025-08-06"
+main = "src/index.ts"
+minify = true
+
+[observability.logs]
+enabled = false

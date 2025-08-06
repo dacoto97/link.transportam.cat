@@ -1,0 +1,27 @@
+name: 🚀 Deploy
+
+concurrency:
+  group: Production
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: 📦 Deploy Job
+    runs-on: ubuntu-latest
+    environment: Production
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🚀 Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CF_API_TOKEN }}
